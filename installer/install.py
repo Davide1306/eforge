@@ -210,7 +210,7 @@ def main() -> int:
     print("    .venv/bin/python -m eval.harness --mode deterministic   # the 1.0 regression gate")
     print("    .venv/bin/python -m eval.harness --mode llm --profile mock   # graph mechanics")
     print("Live LLM runs (your own endpoint): see installer/INSTALL.md, section 5.")
-    print("Docs: README.md -> HANDOFF.md -> docs/")
+    print("Docs: README.md -> docs/")
     print("=" * 72)
     return 0
 

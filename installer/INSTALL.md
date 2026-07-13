@@ -106,7 +106,7 @@ judge any live run against the deterministic gate, which must stay 1.0.
 | symlink error on `/mnt/c/...` (WSL) | move the folder into the Linux FS (`~/eforge`), re-run |
 | live `--mode llm` run errors before reaching the model | the shipped `openai_example` is a placeholder — set your endpoint in `config.yaml` (§5) |
 | `ModuleNotFoundError: eval` | run harness commands from the `main/` directory (its package root) |
-| COMSOL (`model_comsol.py`) questions | the COMSOL leg is emitted + statically checked by default; executing it needs your own COMSOL/MPh license (see HANDOFF.md §7) |
+| COMSOL (`model_comsol.py`) questions | the COMSOL leg is emitted + statically checked by default; executing it needs your own COMSOL/MPh license (see "Running the COMSOL leg" in README.md) |
 
 ## 7. Integrity notes
 

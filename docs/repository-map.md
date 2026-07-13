@@ -7,7 +7,6 @@ evaluation artifacts. For the design and pipeline see [architecture.md](architec
 ```
 eforge/
 ├── README.md                 quickstart and system overview
-├── HANDOFF.md                finalizer's brief: what is certified, what remains
 ├── integrity.json            the nine SHA256 anchors (keys main/-relative)
 ├── requirements.txt          top-level Python dependencies (installer uses the pinned lock)
 ├── .gitignore                venv, caches, install-verify run dirs
@@ -25,7 +24,6 @@ eforge/
 | Path | Role |
 |---|---|
 | `README.md` | Quickstart (`python3 installer/install.py`), two-template overview, the operating commands, and known limitations. |
-| `HANDOFF.md` | The handoff note: certification table, reproduce commands, integrity model, vendored-sources map, external dependencies, finalization checklist, known limitations. |
 | `integrity.json` | frozen. The SHA256 manifest of the nine pinned template and reference files (keys are `main/`-relative). Recomputed by `installer/verify.py`; required to be 9/9. |
 | `requirements.txt` | The top-level dependency list. The exact tested versions live in `installer/requirements.lock.txt`. |
 | `.gitignore` | Ignores `.venv/`, `main/.venv`, `__pycache__/`, `.pytest_cache/`, and the install-verify run dirs (`main/runs/install_verify_*/`). |

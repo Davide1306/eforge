@@ -25,7 +25,7 @@ integrity 9/9 · skeleton ALL PASS (15/15) · deterministic score 1.0 (18 proble
 ```
 
 For flags, live-endpoint setup, and troubleshooting see [installer/INSTALL.md](installer/INSTALL.md).
-Then read [HANDOFF.md](HANDOFF.md) for what is certified and what remains to finalize.
+Then read [docs/certification.md](docs/certification.md) for what is certified and the known limitations.
 
 ## What it does
 
