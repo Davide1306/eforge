@@ -16,7 +16,8 @@ eforge/
 └── docs/                     this documentation set
     ├── architecture.md
     ├── repository-map.md
-    └── certification.md
+    ├── certification.md
+    └── LICENSE                BSD-3-Clause-LBNL (eforge's own code and docs)
 ```
 
 ## Top-level files

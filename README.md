@@ -154,6 +154,6 @@ without re-testing.
 ## License
 
 eforge's own code and documentation are released under the BSD-3-Clause-LBNL license
-(SPDX: `BSD-3-Clause-LBNL`); see [LICENSE](LICENSE). The `sources/` directory contains
+(SPDX: `BSD-3-Clause-LBNL`); see [docs/LICENSE](docs/LICENSE). The `sources/` directory contains
 read-only vendored snapshots of third-party reference implementations, which remain under
 their own upstream terms.
