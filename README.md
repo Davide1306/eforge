@@ -61,6 +61,11 @@ evidence under `main/runs/`, reported in [docs/certification.md](docs/certificat
 | COMSOL builders | static 4/4; opt-in execution verified to the COMSOL-engine boundary |
 | integrity manifest | 9/9 |
 
+A live-model reference run (local Gemma 8B, **non-gating**) scored **0.976** with a perfect
+physics-gate pass rate and zero hallucinations — see
+[`main/runs/gemma_live/`](main/runs/gemma_live/README.md). Live scores are illustrative; the
+deterministic 1.0 gate remains the certificate.
+
 ## Commands
 
 All commands run from `main/` with the pinned interpreter — its `.venv` is a symlink to the

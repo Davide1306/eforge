@@ -16,9 +16,29 @@ ground-truth fills and no model in the loop, the 18-problem battery must score *
 | COMSOL builder — execution (opt-in) | executes to `mph.start()`; produces a solved `.mph` when a COMSOL engine is present, otherwise records `Could not find a supported Comsol installation` (non-gating) | `.venv/bin/python -m eval.harness --mode deterministic --comsol-exec` |
 | Integrity manifest (9 SHA256-pinned frozen files) | **9/9 MATCH** | `python3 installer/verify.py` |
 
-Evidence run directories are written under `main/runs/` (a `deterministic_*` and a `mock_*`
-directory; each holds `metrics.json`, `records.json`, and one folder per problem with the
-emitted `model.py` and `model_comsol.py`).
+Evidence run directories are committed under `main/runs/` — `deterministic/` (the certificate),
+`mock/` (graph mechanics), and `gemma_live/` (a live-model reference run, non-gating; see below).
+Each holds `metrics.json`, `records.json`, and one folder per problem with the emitted `model.py`
+and `model_comsol.py`.
+
+## Live model reference run (non-gating)
+
+To show the factory driven by a **real served model** — not the deterministic gate (no model)
+or the mock client (canned answers) — `main/runs/gemma_live/` holds one full battery run against
+a local 8B Gemma (Ollama tag `gemma4:e4b`, temperature 0, `json_mode: plain`, via the OpenAI-
+compatible endpoint):
+
+| | Result |
+|---|---|
+| Physics-gate pass rate | **1.0** (all 16 non-abstain problems) · executability 1.0 · hallucinations 0 · repairs 0 |
+| Template selection | 0.889 (16/18 — two dilute cases over-selected the superset `polyc_mpb2d`, still gate-passing) |
+| Slot-fill accuracy | 0.972 (misses only on physically-inconsequential slots) |
+| **Composite score** | **0.976** |
+
+This is **illustrative, not part of the certificate**: live scores vary with model,
+quantization, runtime, and decoding. The authoritative correctness certificate is the
+deterministic gate above (score 1.0, no model). Full detail and reproduction command:
+[`main/runs/gemma_live/README.md`](../main/runs/gemma_live/README.md).
 
 ## The two representative COMSOL test cases
 
@@ -36,7 +56,8 @@ wiring are correct; only the engine is absent. See "Running the COMSOL leg" in
   solved `.mph` requires a COMSOL install + MPh runtime + license. The post-solve
   charge/capacitance export expression is best-effort, pending validation on a licensed run.
 - **Live model scores** are the served model's behaviour (bring your own OpenAI-compatible
-  endpoint; non-gating). The deterministic 1.0 gate is the certificate.
+  endpoint; non-gating) — a concrete example is `main/runs/gemma_live/` (local Gemma 8B,
+  score 0.976). The deterministic 1.0 gate is the certificate.
 - **The mock battery** is a graph-mechanics artifact, not a physics result.
 - **F5 adsorption** is reproduced with a documented caveat (the Parsons-Zobel slope magnitude
   sits below the paper anchors); the `adsorption_shift` gate certifies a present, finite,
