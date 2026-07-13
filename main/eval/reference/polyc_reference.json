@@ -1,0 +1,250 @@
+{
+ "mesh": {
+  "tier": "diagnostic",
+  "Ny": 24,
+  "Nz": 48,
+  "z_max_over_lamD": 25.0,
+  "stretch": 7.0,
+  "bc": "eps_S"
+ },
+ "solver_method": "newton_2d_inlined",
+ "source": "emitted polyc_mpb2d skeleton (inlined reference solver, byte-faithful)",
+ "cases": [
+  {
+   "id": "F1_L1nm",
+   "kind": "minima",
+   "fills": {
+    "E_M": 0.0,
+    "E_pzc_1": -0.3,
+    "E_pzc_2": 0.3,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 0.1,
+    "L": 1e-09
+   },
+   "success": true,
+   "residual_norm": 1.0314861843215769e-23,
+   "res_rel": 2.4509165666898554e-12,
+   "sigma": -8.653288589149934e-18,
+   "q_free": -8.653288589149934e-18,
+   "lam_D": 3.041645324790031e-08,
+   "L_over_lamD": 0.03287694301008062,
+   "n_minima": 1,
+   "minima": [
+    [
+     0.0,
+     0.021738203190562078
+    ]
+   ],
+   "C_dl_min_F_per_m2": 0.021738203190562078,
+   "pz_slope": 0.9771239163371007,
+   "pz_intercept": 2.9800976489477575,
+   "pz_r2": 0.9986311100422172
+  },
+  {
+   "id": "F1_L10nm",
+   "kind": "minima",
+   "fills": {
+    "E_M": 0.0,
+    "E_pzc_1": -0.3,
+    "E_pzc_2": 0.3,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 0.1,
+    "L": 1e-08
+   },
+   "success": true,
+   "residual_norm": 1.1980288587419708e-22,
+   "res_rel": 3.058799928536221e-12,
+   "sigma": -1.0278236595162582e-16,
+   "q_free": -1.0278236595162582e-16,
+   "lam_D": 3.041645324790031e-08,
+   "L_over_lamD": 0.3287694301008062,
+   "n_minima": 1,
+   "minima": [
+    [
+     0.0,
+     0.06272238286285256
+    ]
+   ],
+   "C_dl_min_F_per_m2": 0.06272238286285256,
+   "pz_slope": 0.4018823354571788,
+   "pz_intercept": -1.651942485680782,
+   "pz_r2": 1.0
+  },
+  {
+   "id": "F1_L100nm",
+   "kind": "minima",
+   "fills": {
+    "E_M": 0.0,
+    "E_pzc_1": -0.3,
+    "E_pzc_2": 0.3,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 0.1,
+    "L": 1e-07
+   },
+   "success": true,
+   "residual_norm": 8.273585795732454e-22,
+   "res_rel": 4.038360813350122e-12,
+   "sigma": 2.3129646346357432e-17,
+   "q_free": 2.3129646346357432e-17,
+   "lam_D": 3.041645324790031e-08,
+   "L_over_lamD": 3.287694301008062,
+   "n_minima": 2,
+   "minima": [
+    [
+     -0.36000000000000004,
+     0.12445753046162732
+    ],
+    [
+     0.3600000000000001,
+     0.12445753046163746
+    ]
+   ],
+   "C_dl_min_F_per_m2": 0.12445753046162732,
+   "pz_slope": null,
+   "pz_intercept": null,
+   "pz_r2": null
+  },
+  {
+   "id": "V0_cb01_dilute",
+   "kind": "single",
+   "fills": {
+    "E_M": -0.15,
+    "E_pzc_1": 0.0,
+    "E_pzc_2": 0.0,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 0.1,
+    "L": 1e-08
+   },
+   "success": true,
+   "residual_norm": 4.324840929364088e-23,
+   "res_rel": 1.3211407753559998e-11,
+   "sigma": -0.007947501656515098,
+   "q_free": -0.007947501656515098,
+   "lam_D": 3.041645324790031e-08,
+   "L_over_lamD": 0.3287694301008062,
+   "n_minima": 1,
+   "minima": [
+    [
+     0.0,
+     0.021869759955219045
+    ]
+   ],
+   "C_dl_min_F_per_m2": 0.021869759955219045,
+   "pz_slope": 0.9987495170106051,
+   "pz_intercept": 1.9974289557697236,
+   "pz_r2": 0.999999997712536
+  },
+  {
+   "id": "V0_cb10_conc",
+   "kind": "single",
+   "fills": {
+    "E_M": 0.2,
+    "E_pzc_1": 0.0,
+    "E_pzc_2": 0.0,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 10.0,
+    "L": 1e-08
+   },
+   "success": true,
+   "residual_norm": 3.4344681406817883e-23,
+   "res_rel": 1.7772689577971476e-12,
+   "sigma": 0.04510366450978588,
+   "q_free": 0.04510366450978588,
+   "lam_D": 3.041645324790031e-09,
+   "L_over_lamD": 3.287694301008062,
+   "n_minima": 1,
+   "minima": [
+    [
+     0.0,
+     0.15695803148495488
+    ]
+   ],
+   "C_dl_min_F_per_m2": 0.15695803148495488,
+   "pz_slope": 0.9987495170106051,
+   "pz_intercept": 1.9974289557697236,
+   "pz_r2": 0.999999997712536
+  },
+  {
+   "id": "F4_PZ_L10nm",
+   "kind": "pz",
+   "fills": {
+    "E_M": 0.0,
+    "E_pzc_1": -0.1,
+    "E_pzc_2": 0.1,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 0.1,
+    "L": 1e-08
+   },
+   "success": true,
+   "residual_norm": 1.8087516957746004e-22,
+   "res_rel": 1.3875614569667805e-11,
+   "sigma": -5.44811591673966e-18,
+   "q_free": -5.44811591673966e-18,
+   "lam_D": 3.041645324790031e-08,
+   "L_over_lamD": 0.3287694301008062,
+   "n_minima": 1,
+   "minima": [
+    [
+     0.0,
+     0.02297976955122694
+    ]
+   ],
+   "C_dl_min_F_per_m2": 0.02297976955122694,
+   "pz_slope": 0.9580205214809077,
+   "pz_intercept": 1.2690860548591625,
+   "pz_r2": 0.9987055787751105
+  },
+  {
+   "id": "F5_ads_L10nm",
+   "kind": "ads",
+   "fills": {
+    "E_M": 0.0,
+    "E_pzc_1": -0.1,
+    "E_pzc_2": 0.1,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.2,
+    "c_b": 0.1,
+    "L": 1e-08,
+    "E_ads0": 0.3,
+    "theta_max": 0.01
+   },
+   "success": true,
+   "residual_norm": 3.9819858871925695e-23,
+   "res_rel": 2.2354031268514917e-12,
+   "sigma": -0.0015620678014323167,
+   "q_free": -0.0015620678014323167,
+   "lam_D": 3.041645324790031e-08,
+   "L_over_lamD": 0.3287694301008062,
+   "n_minima": 1,
+   "minima": [
+    [
+     0.05789999999999995,
+     0.02234063953071616
+    ]
+   ],
+   "C_dl_min_F_per_m2": 0.02234063953071616,
+   "pz_slope": 0.9693064385748977,
+   "pz_intercept": 2.049597154565541,
+   "pz_r2": 0.9985431370148667,
+   "adsorption_on": true,
+   "adsorption_emin_base_V": 0.05789999999999995,
+   "adsorption_emin_total_V": -0.03090000000000004,
+   "adsorption_shift_meV": -88.79999999999998,
+   "C_ads_peak_uFcm2": 23.433620442030872,
+   "note": "F5 adsorption: reproduced-with-caveat band, NOT article-grade (model PZ theta-dependence ~0.07-0.10 under paper). The shift magnitude uses the documented caveat tolerance in validate_skeleton."
+  }
+ ]
+}

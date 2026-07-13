@@ -1,0 +1,154 @@
+{
+ "mesh": {
+  "Ny": 8,
+  "Nz": 64,
+  "Z_max_factor": 8.0
+ },
+ "solver_method": "sparse",
+ "cases": [
+  {
+   "id": "single_facet_neg",
+   "fills": {
+    "E_M": -0.2,
+    "E_pzc_1": 0.1,
+    "E_pzc_2": 0.1,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 0.1,
+    "L": 1e-08
+   },
+   "sigma_bar": -0.04078446875445228,
+   "psi_surf_min": -0.21843106249109548,
+   "psi_surf_max": -0.21843106249109548,
+   "success": true,
+   "residual_norm": 2.584965235250029e-10
+  },
+  {
+   "id": "single_facet_pos",
+   "fills": {
+    "E_M": 0.25,
+    "E_pzc_1": 0.0,
+    "E_pzc_2": 0.0,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 10.0,
+    "L": 1e-08
+   },
+   "sigma_bar": 0.0635840694923901,
+   "psi_surf_min": 0.12283186101521981,
+   "psi_surf_max": 0.12283186101521981,
+   "success": true,
+   "residual_norm": 1.932950108170873e-10
+  },
+  {
+   "id": "single_facet_dilute",
+   "fills": {
+    "E_M": -0.1,
+    "E_pzc_1": 0.0,
+    "E_pzc_2": 0.0,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 0.1,
+    "L": 1e-07
+   },
+   "sigma_bar": -0.003493358861752685,
+   "psi_surf_min": -0.09301328227649464,
+   "psi_surf_max": -0.09301328227649464,
+   "success": true,
+   "residual_norm": 8.72422253971667e-11
+  },
+  {
+   "id": "two_facet_06_dilute",
+   "fills": {
+    "E_M": 0.0,
+    "E_pzc_1": 0.3,
+    "E_pzc_2": -0.3,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 0.1,
+    "L": 1e-08
+   },
+   "sigma_bar": -1.3877787807814457e-17,
+   "psi_surf_min": -0.17310819864295213,
+   "psi_surf_max": 0.17310819864295213,
+   "success": true,
+   "residual_norm": 1.565259294214004e-10
+  },
+  {
+   "id": "two_facet_06_conc",
+   "fills": {
+    "E_M": 0.15,
+    "E_pzc_1": 0.3,
+    "E_pzc_2": -0.3,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 10.0,
+    "L": 1e-08
+   },
+   "sigma_bar": 0.04968044036270786,
+   "psi_surf_min": -0.07110625703412869,
+   "psi_surf_max": 0.16301576060419495,
+   "success": true,
+   "residual_norm": 5.122434567405791e-10
+  },
+  {
+   "id": "two_facet_02_smallL",
+   "fills": {
+    "E_M": -0.05,
+    "E_pzc_1": 0.1,
+    "E_pzc_2": -0.1,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 0.1,
+    "L": 1e-09
+   },
+   "sigma_bar": -0.0012476762232381394,
+   "psi_surf_min": -0.06021142613114475,
+   "psi_surf_max": -0.03479785468663468,
+   "success": true,
+   "residual_norm": 1.2122511728293146e-10
+  },
+  {
+   "id": "two_facet_asym_x",
+   "fills": {
+    "E_M": 0.1,
+    "E_pzc_1": 0.2,
+    "E_pzc_2": -0.2,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.3,
+    "c_b": 1.0,
+    "L": 3e-08
+   },
+   "sigma_bar": 0.031060467755959616,
+   "psi_surf_min": -0.06973463759382664,
+   "psi_surf_max": 0.1789303731697857,
+   "success": true,
+   "residual_norm": 1.438619225427852e-10
+  },
+  {
+   "id": "two_facet_bigL",
+   "fills": {
+    "E_M": 0.05,
+    "E_pzc_1": 0.3,
+    "E_pzc_2": -0.3,
+    "C_H_1": 0.5,
+    "C_H_2": 0.5,
+    "x": 0.5,
+    "c_b": 10.0,
+    "L": 1e-07
+   },
+   "sigma_bar": 0.019009306405633954,
+   "psi_surf_min": -0.1228288665572803,
+   "psi_surf_max": 0.14669558650350178,
+   "success": true,
+   "residual_norm": 2.2879913063526714e-10
+  }
+ ]
+}

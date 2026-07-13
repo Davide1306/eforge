@@ -1,0 +1,208 @@
+# Template: polyc_mpb2d — 2-D modified Poisson-Boltzmann (full-physics) EDL, periodic two-facet stripe
+# Derived from the reference full-physics modified-PB implementation (Liu et al., ACS Electrochem. 2026).
+# fillable: false sections are FROZEN — any LLM write into them is a hallucination_incident.
+
+template_id: polyc_mpb2d
+version: 1
+title: "2-D modified Poisson-Boltzmann (full-physics) EDL on a periodic two-facet stripe electrode"
+description: >
+  Full-physics electric double-layer model of a polycrystalline / two-facet metal
+  electrode in aqueous monovalent electrolyte, solving the article's complete
+  mean-field model: a 2-D MODIFIED Poisson-Boltzmann equation with asymmetric-ion
+  steric crowding (Bikerman / volume-exclusion factors gamma_+ , gamma_-), Langevin
+  solvent polarization, a field-dependent (Booth) effective permittivity eps_eff,
+  position-dependent water density n_w, facet-resolved Robin (Helmholtz) boundary
+  conditions, y-periodicity, and an opt-in Langmuir specific-adsorption capacitance
+  (C = C_dl + C_ads). Computes phi(y,z), the HP profile phi_HP(y), free charge
+  q_free(E_M), differential capacitance C_dl(E_M), capacitance minima, and
+  Parsons-Zobel slopes. Facets differ in potential of zero charge (and optionally
+  Helmholtz capacitance). 2-D periodic stripe geometry, facet 1 occupies y < x*L.
+  (Factual scope only; the discriminative selector wording lives in registry.yaml.)
+
+physics:
+  fillable: false
+  ref: physics.frozen.md
+  governing_eq: "div(eps_eff * grad(phi_S)) = -e_0 (n_+ - n_-)   [modified PB, eqs 1-4; asymmetric steric D, Langevin/Booth eps_eff, position-dependent n_w]"
+  dimensionless_vars:
+    - "beta = 1/(k_B T)   (E and phi enter dimensionally in SI; modified-PB is NOT the bare sinh(phi) form)"
+    - "lambda_D = sqrt(eps_S k_B T / (2 e_0^2 n_b))   (monovalent Debye length; z_max = z_max_over_lamD * lambda_D)"
+    - "v = 2 d_t^3 n_b   (bulk ion volume fraction; enters steric denominator D, eq 2)"
+  bc:
+    z0: "Robin (eq 5, erratum E2 default = as-printed): dphi_S/dz|_0 = -(1/eps_S) C_H^i (E_M - E_pzc^i - phi_HP); C_H^i = eps_HP^i/l_HP^i; phi_HP = phi_S(y, z=0). LOCKED bc='eps_S'."
+    zmax: "Dirichlet (eq 6): phi_S = 0 at z = Z_max = z_max_over_lamD * lambda_D (bulk reference)."
+    y: "Periodic (eq 7): phi_S(y=0) = phi_S(y=L); facet 1 occupies y < x*L, facet 2 the rest."
+
+constants:
+  fillable: false
+  # Table-S1 SI values, transcribed from the reference implementation's constants.
+  # NOTE vs gc_polyc: polyc uses T=298.0 K (gc_polyc uses 298.15); use polyc's.
+  k_B:     1.381e-23        # J/K
+  T:       298.0            # K
+  e_0:     1.6021e-19       # C
+  N_A:     6.02e23          # 1/mol
+  eps_0:   8.85e-12         # F/m
+  c_w:     55.6             # M   (pure-water molarity)
+  eps_opt: 1.62e-11         # F/m = 1.8 * eps_0    (optical permittivity, SI ref 4)
+  eps_HP:  2.655e-10        # F/m = 30 * eps_0     (metal<->HP gap; enters via C_H = eps_HP/l_HP)
+  eps_S:   6.94725e-10      # F/m = 78.5 * eps_0   (bulk-solution permittivity, bulk water)
+  d_t:     3.1e-10          # m   lattice size = (c_w N_A)^(-1/3); Table-rounded 3.1 Angstrom
+  gamma_p: 3.0              # ion-size factor gamma_+ = (d_+/d_t)^3
+  gamma_m: 3.0              # ion-size factor gamma_-
+  p_dip:   1.58e-29         # C*m solvent dipole moment (pinned: sqrt(3 d_t^3 (eps_S-eps_opt) k_B T))
+  N_tot:   1.5029e19        # 1/m^2 metal atom density = 4/(sqrt3 a_Pt^2), a_Pt=3.92 Angstrom
+  E_pzc_111_default: 0.3    # V_SHE  111 / "T" facet (SI refs 3,6)
+  E_pzc_110_default: -0.1   # V_SHE  110 / "S" facet (SI ref 7)
+  E_ads0_default:    0.45   # V      default specific-adsorption potential (variable)
+  theta_max_default: 0.01   # fraction (1%) default adsorption coverage scale (variable)
+
+parameters:
+  fillable: true
+  group: parameters_core
+  slots:
+    E_M:
+      type: float
+      unit: V
+      range: [-1.0, 1.0]
+      required: true
+      desc: "Applied electrode potential vs SHE (same scale as E_pzc)."
+    E_pzc_1:
+      type: float
+      unit: V
+      range: [-1.0, 1.0]
+      required: true
+      desc: "Potential of zero charge, facet 1, vs SHE. Table-S1 base 111/'T' facet = +0.3 V."
+    E_pzc_2:
+      type: float
+      unit: V
+      range: [-1.0, 1.0]
+      required: true
+      desc: "Potential of zero charge, facet 2, vs SHE. Table-S1 base 110/'S' facet = -0.1 V."
+    c_b:
+      type: float
+      unit: "mol/m^3"
+      range: [1.0e-3, 1.0e+4]
+      required: true
+      desc: "Bulk electrolyte concentration. CRITICAL UNIT NOTE: 1 mM = 1.0 mol/m^3 (numerically equal). 0.1 mM -> 0.1; 10 mM -> 10.0."
+    L:
+      type: float
+      unit: m
+      range: [1.0e-10, 1.0e-6]
+      required: true
+      desc: "Stripe period (one facet-1 + facet-2 repeat), in meters. Convert nm by appending e-9 while KEEPING the problem's digits as written: 10 nm -> 10e-9, 30 nm -> 30e-9, 2.5 nm -> 2.5e-9. Never normalize the mantissa (do not rewrite 10e-9 as 1e-08)."
+
+parameters_optional:
+  fillable: true
+  group: parameters_optional
+  slots:
+    C_H_1:
+      type: float
+      unit: "F/m^2"
+      default: 0.5
+      range: [0.01, 5.0]
+      required: false
+      desc: "Helmholtz capacitance facet 1. 50 uF/cm^2 = 0.5 F/m^2 (Fig S3 uses 25 -> 0.25). Use default unless the problem states otherwise."
+    C_H_2:
+      type: float
+      unit: "F/m^2"
+      default: 0.5
+      range: [0.01, 5.0]
+      required: false
+      desc: "Helmholtz capacitance facet 2. 50 uF/cm^2 = 0.5 F/m^2."
+    x:
+      type: float
+      unit: "1"
+      default: 0.5
+      range: [0.0, 1.0]
+      required: false
+      desc: "Fraction of the stripe period occupied by facet 1 (facet 1 = y < x*L)."
+    E_ads0:
+      type: float
+      unit: V
+      default: 0.45
+      range: [-1.0, 1.0]
+      required: false
+      desc: "Specific-adsorption standard potential E_ads^0 (eq 12, vs SHE). Only active when theta_max > 0. Table-S1 default 0.45 V makes adsorption identifiable; Fig 9 uses 0.40 V."
+    theta_max:
+      type: float
+      unit: "1"
+      default: 0.0
+      range: [0.0, 0.5]
+      required: false
+      desc: "Adsorption coverage scale theta_max = x*theta_max^facet1 (eq 13). DEFAULT 0.0 = adsorption OFF (the switch that makes non-adsorption cases identical to the base modified-PB physics). Set 0.01 for the Table-S1 1% case; only nonzero when the problem requests specific adsorption."
+
+sweep:
+  fillable: true
+  group: sweep
+  slots:
+    sweep_var:
+      type: enum
+      choices: [E_M, none]
+      default: E_M
+      desc: "Set 'none' when the problem evaluates at a single applied potential ('at X V', 'single point') — then sweep_lo, sweep_hi and n_points must all be null. Set 'E_M' ONLY when an explicit potential range/sweep/curve is requested."
+    sweep_lo:
+      type: float
+      unit: V
+      default: -0.5
+      desc: "Sweep lower bound in V. Only when sweep_var='E_M'; null otherwise."
+    sweep_hi:
+      type: float
+      unit: V
+      default: 0.5
+      desc: "Sweep upper bound in V. Only when sweep_var='E_M'; null otherwise."
+    n_points:
+      type: int
+      default: 41
+      range: [5, 201]
+      desc: "Number of sweep points, only when sweep_var='E_M'. For a single-point solve (sweep_var='none') this must be null — never 1."
+    panel_L_nm:
+      type: "list[float]"
+      default: [10.0]
+      desc: "Stripe periods in NANOMETERS to run as separate curves (e.g. [1, 10, 100]). Always include this field."
+
+mesh_tier:
+  fillable: true
+  group: mesh_tier
+  slots:
+    tier:
+      type: enum
+      choices: [diagnostic, milestone, final]
+      default: diagnostic
+      desc: "Mesh resolution tier. diagnostic for quick checks, final for article-grade figures."
+  resolved_table:
+    fillable: false
+    # Ny/Nz ladder: diagnostic = polyc solver default (Ny=24,Nz=48, fast); milestone
+    # doubles in both; final = article-grade. stretch=7 and z_max_over_lamD=25 mirror
+    # the polyc make_grid_2d(..., z_max_over_lamD=25.0, stretch=7.0) defaults. bc=eps_S
+    # is LOCKED by erratum E2 (default = as-printed Robin prefactor).
+    diagnostic: {Ny: 24,  Nz: 48,  stretch: 7, z_max_over_lamD: 25, bc: eps_S}
+    milestone:  {Ny: 48,  Nz: 96,  stretch: 7, z_max_over_lamD: 25, bc: eps_S}
+    final:      {Ny: 96,  Nz: 192, stretch: 7, z_max_over_lamD: 25, bc: eps_S}
+
+outputs:
+  fillable: false
+  artifacts:
+    - name: result_json
+      desc: >
+        stdout line 'RESULT_JSON: {...}' with keys: success (bool), residual_norm
+        (float, max flux-normalized FV residual over the solve), minima (list of
+        [E_M_V, C_dl_Fm2] pairs, ordered by E_M), C_dl (list of C_dl values along
+        the E_M sweep, F/m^2), E_M (list of sweep potentials V), pz_slope (float,
+        Parsons-Zobel 1/C_dl,min vs 1/C_GC linear-fit slope), pz_r2 (float, fit R^2),
+        pz_intercept (float, 1/C_H intercept), sigma (float, q_free per unit area at
+        the working point, C/m^2), adsorption_shift (float or null, E_min shift in V
+        induced by C_ads when theta_max>0; null when adsorption OFF).
+    - name: sweep_csv
+      pattern: "sweep_L{L_nm}nm.csv"
+      columns: [E_M_V, q_free_Cm2, C_dl_Fm2]   # column ORDER is the contract
+  # Stable functions the Python skeleton MUST define. Consumed by the per-template
+  # REQUIRED_DEFS check and the validator. Names are the reference public-API
+  # entry points (src/pb2d.py): solve_2d (single-point
+  # 2-D solve), C_dl_2facet (E_M-sweep -> q_free/C_dl), minima_from_qfree (minima
+  # extractor), plus main (the RESULT_JSON-emitting CLI entry the skeleton adds).
+  required_defs: [solve_2d, C_dl_2facet, minima_from_qfree, main]
+  return_contract:
+    solve_fn: "solve_2d(E_M, c_b_M, L, x, E_pzc1, E_pzc2, C_H1, C_H2, ...) -> dict(y, z, phi, success, res_inf, q_free, phi_HP, lam_D, ...)"
+
+acceptance_gates:
+  fillable: false
+  ref: gates.frozen.yaml

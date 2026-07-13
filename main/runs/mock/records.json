@@ -1,0 +1,1054 @@
+[
+ {
+  "problem_id": "p01_f2a_dilute",
+  "template_id_expected": "gc_polyc_pb2d",
+  "template_id_got": "gc_polyc_pb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 1.07,
+  "resolved_expected": {
+   "E_M": 0.0,
+   "E_pzc_1": 0.3,
+   "E_pzc_2": -0.3,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "E_M",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    1.0,
+    10.0,
+    100.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "resolved_got": {
+   "E_M": 0.0,
+   "E_pzc_1": 0.3,
+   "E_pzc_2": -0.3,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "E_M",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    1.0,
+    10.0,
+    100.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p02_bistable_conc",
+  "template_id_expected": "gc_polyc_pb2d",
+  "template_id_got": "gc_polyc_pb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 0.45,
+  "resolved_expected": {
+   "E_M": 0.15,
+   "E_pzc_1": 0.3,
+   "E_pzc_2": -0.3,
+   "c_b": 10.0,
+   "L": 1e-07,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "E_M",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    100.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "resolved_got": {
+   "E_M": 0.15,
+   "E_pzc_1": 0.3,
+   "E_pzc_2": -0.3,
+   "c_b": 10.0,
+   "L": 1e-07,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "E_M",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    100.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p03_single_crystal",
+  "template_id_expected": "gc_polyc_pb2d",
+  "template_id_got": "gc_polyc_pb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 0.31,
+  "resolved_expected": {
+   "E_M": -0.2,
+   "E_pzc_1": 0.16,
+   "E_pzc_2": 0.16,
+   "c_b": 5.0,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "resolved_got": {
+   "E_M": -0.2,
+   "E_pzc_1": 0.16,
+   "E_pzc_2": 0.16,
+   "c_b": 5.0,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p04_molar_trap",
+  "template_id_expected": "gc_polyc_pb2d",
+  "template_id_got": "gc_polyc_pb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 0.35,
+  "resolved_expected": {
+   "E_M": 0.05,
+   "E_pzc_1": 0.1,
+   "E_pzc_2": -0.1,
+   "c_b": 1.0,
+   "L": 5e-09,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "resolved_got": {
+   "E_M": 0.05,
+   "E_pzc_1": 0.1,
+   "E_pzc_2": -0.1,
+   "c_b": 1.0,
+   "L": 5e-09,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p05_minimal_defaults",
+  "template_id_expected": "gc_polyc_pb2d",
+  "template_id_got": "gc_polyc_pb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 0.29,
+  "resolved_expected": {
+   "E_M": 0.1,
+   "E_pzc_1": 0.25,
+   "E_pzc_2": -0.15,
+   "c_b": 1.0,
+   "L": 3e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "resolved_got": {
+   "E_M": 0.1,
+   "E_pzc_1": 0.25,
+   "E_pzc_2": -0.15,
+   "c_b": 1.0,
+   "L": 3e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p06_unit_trap_CH",
+  "template_id_expected": "gc_polyc_pb2d",
+  "template_id_got": "gc_polyc_pb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 0.29,
+  "resolved_expected": {
+   "E_M": -0.1,
+   "E_pzc_1": 0.2,
+   "E_pzc_2": 0.0,
+   "c_b": 100.0,
+   "L": 1e-08,
+   "C_H_1": 0.25,
+   "C_H_2": 0.25,
+   "x": 0.5,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "resolved_got": {
+   "E_M": -0.1,
+   "E_pzc_1": 0.2,
+   "E_pzc_2": 0.0,
+   "c_b": 100.0,
+   "L": 1e-08,
+   "C_H_1": 0.25,
+   "C_H_2": 0.25,
+   "x": 0.5,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p07_asym_facets",
+  "template_id_expected": "gc_polyc_pb2d",
+  "template_id_got": "gc_polyc_pb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 0.32,
+  "resolved_expected": {
+   "E_M": 0.1,
+   "E_pzc_1": 0.35,
+   "E_pzc_2": -0.05,
+   "c_b": 2.0,
+   "L": 3e-08,
+   "C_H_1": 0.8,
+   "C_H_2": 0.4,
+   "x": 0.25,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "resolved_got": {
+   "E_M": 0.1,
+   "E_pzc_1": 0.35,
+   "E_pzc_2": -0.05,
+   "c_b": 2.0,
+   "L": 3e-08,
+   "C_H_1": 0.8,
+   "C_H_2": 0.4,
+   "x": 0.25,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p08_abstain_stern",
+  "template_id_expected": "no_match",
+  "template_id_got": "no_match",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "abstained",
+  "wall_time_s": 0.01,
+  "exec_ok": null,
+  "gates_ok": null,
+  "comsol_static_ok": null
+ },
+ {
+  "problem_id": "p09_custom_sweep",
+  "template_id_expected": "gc_polyc_pb2d",
+  "template_id_got": "gc_polyc_pb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 0.63,
+  "resolved_expected": {
+   "E_M": 0.0,
+   "E_pzc_1": 0.3,
+   "E_pzc_2": -0.3,
+   "c_b": 1.0,
+   "L": 5e-09,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "E_M",
+   "sweep_lo": -0.3,
+   "sweep_hi": 0.3,
+   "n_points": 31,
+   "panel_L_nm": [
+    5.0,
+    50.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "resolved_got": {
+   "E_M": 0.0,
+   "E_pzc_1": 0.3,
+   "E_pzc_2": -0.3,
+   "c_b": 1.0,
+   "L": 5e-09,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "E_M",
+   "sweep_lo": -0.3,
+   "sweep_hi": 0.3,
+   "n_points": 31,
+   "panel_L_nm": [
+    5.0,
+    50.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p10_match_ref",
+  "template_id_expected": "gc_polyc_pb2d",
+  "template_id_got": "gc_polyc_pb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 0.31,
+  "resolved_expected": {
+   "E_M": -0.2,
+   "E_pzc_1": 0.1,
+   "E_pzc_2": 0.1,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "resolved_got": {
+   "E_M": -0.2,
+   "E_pzc_1": 0.1,
+   "E_pzc_2": 0.1,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 8,
+    "Nz": 64,
+    "Z_max_factor": 8.0
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p11_steric_twofacet",
+  "template_id_expected": "polyc_mpb2d",
+  "template_id_got": "polyc_mpb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 26.67,
+  "resolved_expected": {
+   "E_M": 0.0,
+   "E_pzc_1": 0.3,
+   "E_pzc_2": -0.3,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "E_M",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    1.0,
+    10.0,
+    100.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "resolved_got": {
+   "E_M": 0.0,
+   "E_pzc_1": 0.3,
+   "E_pzc_2": -0.3,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "E_M",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    1.0,
+    10.0,
+    100.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p12_booth_single",
+  "template_id_expected": "polyc_mpb2d",
+  "template_id_got": "polyc_mpb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 16.98,
+  "resolved_expected": {
+   "E_M": -0.15,
+   "E_pzc_1": 0.0,
+   "E_pzc_2": 0.0,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.25,
+   "C_H_2": 0.25,
+   "x": 0.5,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "resolved_got": {
+   "E_M": -0.15,
+   "E_pzc_1": 0.0,
+   "E_pzc_2": 0.0,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.25,
+   "C_H_2": 0.25,
+   "x": 0.5,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p13_adsorption_f5",
+  "template_id_expected": "polyc_mpb2d",
+  "template_id_got": "polyc_mpb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 17.54,
+  "resolved_expected": {
+   "E_M": 0.0,
+   "E_pzc_1": -0.1,
+   "E_pzc_2": 0.1,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.2,
+   "E_ads0": 0.3,
+   "theta_max": 0.01,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "resolved_got": {
+   "E_M": 0.0,
+   "E_pzc_1": -0.1,
+   "E_pzc_2": 0.1,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.2,
+   "E_ads0": 0.3,
+   "theta_max": 0.01,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p14_facet_ratio",
+  "template_id_expected": "polyc_mpb2d",
+  "template_id_got": "polyc_mpb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 17.33,
+  "resolved_expected": {
+   "E_M": 0.1,
+   "E_pzc_1": 0.35,
+   "E_pzc_2": -0.05,
+   "c_b": 2.0,
+   "L": 3e-08,
+   "C_H_1": 0.8,
+   "C_H_2": 0.4,
+   "x": 0.25,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "resolved_got": {
+   "E_M": 0.1,
+   "E_pzc_1": 0.35,
+   "E_pzc_2": -0.05,
+   "c_b": 2.0,
+   "L": 3e-08,
+   "C_H_1": 0.8,
+   "C_H_2": 0.4,
+   "x": 0.25,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p15_unit_trap",
+  "template_id_expected": "polyc_mpb2d",
+  "template_id_got": "polyc_mpb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 16.06,
+  "resolved_expected": {
+   "E_M": 0.2,
+   "E_pzc_1": 0.0,
+   "E_pzc_2": 0.0,
+   "c_b": 10.0,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "resolved_got": {
+   "E_M": 0.2,
+   "E_pzc_1": 0.0,
+   "E_pzc_2": 0.0,
+   "c_b": 10.0,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p16_abstain_polyfacet",
+  "template_id_expected": "no_match",
+  "template_id_got": "no_match",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "abstained",
+  "wall_time_s": 0.01,
+  "exec_ok": null,
+  "gates_ok": null,
+  "comsol_static_ok": null
+ },
+ {
+  "problem_id": "p17_pz_slope",
+  "template_id_expected": "polyc_mpb2d",
+  "template_id_got": "polyc_mpb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 20.1,
+  "resolved_expected": {
+   "E_M": 0.0,
+   "E_pzc_1": -0.1,
+   "E_pzc_2": 0.1,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "E_M",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "resolved_got": {
+   "E_M": 0.0,
+   "E_pzc_1": -0.1,
+   "E_pzc_2": 0.1,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "E_M",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ },
+ {
+  "problem_id": "p18_v0_dilute",
+  "template_id_expected": "polyc_mpb2d",
+  "template_id_got": "polyc_mpb2d",
+  "hallucination_incidents": 0,
+  "repair_rounds": 0,
+  "tokens_total": 0,
+  "status": "ok",
+  "wall_time_s": 16.26,
+  "resolved_expected": {
+   "E_M": -0.15,
+   "E_pzc_1": 0.0,
+   "E_pzc_2": 0.0,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "resolved_got": {
+   "E_M": -0.15,
+   "E_pzc_1": 0.0,
+   "E_pzc_2": 0.0,
+   "c_b": 0.1,
+   "L": 1e-08,
+   "C_H_1": 0.5,
+   "C_H_2": 0.5,
+   "x": 0.5,
+   "E_ads0": 0.45,
+   "theta_max": 0.0,
+   "sweep_var": "none",
+   "sweep_lo": -0.5,
+   "sweep_hi": 0.5,
+   "n_points": 41,
+   "panel_L_nm": [
+    10.0
+   ],
+   "tier": "diagnostic",
+   "mesh_resolved": {
+    "Ny": 24,
+    "Nz": 48,
+    "stretch": 7,
+    "z_max_over_lamD": 25,
+    "bc": "eps_S"
+   }
+  },
+  "exec_ok": true,
+  "gates_ok": true,
+  "comsol_static_ok": true,
+  "failures": []
+ }
+]

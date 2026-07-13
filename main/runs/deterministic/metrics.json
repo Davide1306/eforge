@@ -1,0 +1,17 @@
+{
+ "n_problems": 18,
+ "selection_accuracy": 1.0,
+ "slot_fill_accuracy": 1.0,
+ "executability_rate": 1.0,
+ "physics_pass_rate": 1.0,
+ "comsol_static_pass_rate": 1.0,
+ "comsol_exec_pass_rate": null,
+ "hallucination_incidents": 0,
+ "repair_rounds_total": 0,
+ "tokens_total": 0,
+ "tokens_per_problem": 0.0,
+ "mean_wall_time_s": 8.385,
+ "score": 1.0,
+ "mode": "deterministic",
+ "profile": null
+}

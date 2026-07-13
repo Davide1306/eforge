@@ -1,0 +1,4 @@
+{"group": "parameters_core", "problem": "Compute the double-layer response of a two-facet electrode at -0.15 V vs SHE. Facet PZCs are +0.2 V and -0.4 V. Electrolyte: 5 mM KF. Stripe period 7 nm.", "fill": {"E_M": -0.15, "E_pzc_1": 0.2, "E_pzc_2": -0.4, "c_b": 5.0, "L": 7e-9}}
+{"group": "parameters_optional", "problem": "...facet 1 covers 30% of the surface; Helmholtz capacitance 25 uF/cm^2 on both facets...", "fill": {"C_H_1": 0.25, "C_H_2": 0.25, "x": 0.3}}
+{"group": "sweep", "problem": "...sweep the applied potential from -0.4 to +0.4 V in 81 steps for stripe periods of 5 and 50 nm...", "fill": {"sweep_var": "E_M", "sweep_lo": -0.4, "sweep_hi": 0.4, "n_points": 81, "panel_L_nm": [5.0, 50.0]}}
+{"group": "mesh_tier", "problem": "...a quick diagnostic estimate is fine...", "fill": {"tier": "diagnostic"}}

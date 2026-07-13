@@ -1,0 +1,11 @@
+# model/requirements.txt — re-emitted at bootstrap 2026-06-17 (Liu2026 run)
+# from the live project venv (SPINE §1: bootstrap re-emits; precedent S08).
+# 2-D modified-PB solver + figure + digitization stack. No version pins unless
+# a downstream regression demands one.
+numpy
+scipy
+matplotlib
+pandas
+pymupdf
+pytest
+jax

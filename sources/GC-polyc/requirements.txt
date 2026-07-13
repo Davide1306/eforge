@@ -1,0 +1,16 @@
+# GC-polyc runtime requirements
+# Format: import_name : pip-package-name (default: same as import_name)
+# Install command (NEVER target any other venv):
+#   pip install <pkg>
+# Currently provisioned in .venv (Python 3.14.4):
+#   numpy 2.4.4, scipy 1.17.1, matplotlib 3.10.9, pandas 3.0.2,
+#   pytest 9.0.3, pymupdf 1.27.2.3, jax 0.10.0, jaxlib 0.10.0
+numpy : numpy
+scipy : scipy
+matplotlib : matplotlib
+pandas : pandas
+pytest : pytest
+fitz : pymupdf
+# Optional but installed and recommended for autodiff Jacobian:
+jax : jax
+jaxlib : jaxlib

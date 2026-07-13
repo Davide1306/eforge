@@ -1,0 +1,260 @@
+# Ground-truth slot fills per seed problem (FROZEN — integrity-pinned; do not edit).
+# HELD OUT: used for SCORING ONLY — never copy values into few-shots or prompts.
+# Slots omitted here legitimately fall back to template defaults (that omission is
+# part of the expected behavior).
+
+problems:
+  p01_f2a_dilute:
+    template_id: gc_polyc_pb2d
+    fills:
+      E_M: 0.0
+      E_pzc_1: 0.30
+      E_pzc_2: -0.30
+      c_b: 0.1
+      L: 10.0e-9
+      sweep_var: E_M
+      sweep_lo: -0.5
+      sweep_hi: 0.5
+      n_points: 41
+      panel_L_nm: [1.0, 10.0, 100.0]
+      tier: diagnostic
+
+  p02_bistable_conc:
+    template_id: gc_polyc_pb2d
+    fills:
+      E_M: 0.15
+      E_pzc_1: 0.30
+      E_pzc_2: -0.30
+      c_b: 10.0
+      L: 100.0e-9
+      sweep_var: E_M
+      sweep_lo: -0.5
+      sweep_hi: 0.5
+      n_points: 41
+      panel_L_nm: [100.0]
+      tier: diagnostic
+
+  p03_single_crystal:
+    template_id: gc_polyc_pb2d
+    fills:
+      E_M: -0.20
+      E_pzc_1: 0.16
+      E_pzc_2: 0.16
+      c_b: 5.0
+      L: 10.0e-9
+      sweep_var: none
+      tier: diagnostic
+
+  p04_molar_trap:
+    template_id: gc_polyc_pb2d
+    fills:
+      E_M: 0.05
+      E_pzc_1: 0.10
+      E_pzc_2: -0.10
+      c_b: 1.0          # 0.001 M = 1 mol/m^3 — the trap
+      L: 5.0e-9
+      sweep_var: none
+      tier: diagnostic
+
+  p05_minimal_defaults:
+    template_id: gc_polyc_pb2d
+    fills:
+      E_M: 0.10
+      E_pzc_1: 0.25
+      E_pzc_2: -0.15
+      c_b: 1.0
+      L: 30.0e-9
+      sweep_var: none
+      tier: diagnostic
+      # C_H_1, C_H_2, x intentionally omitted -> defaults 0.5, 0.5, 0.5
+
+  p06_unit_trap_CH:
+    template_id: gc_polyc_pb2d
+    fills:
+      E_M: -0.10
+      E_pzc_1: 0.20
+      E_pzc_2: 0.0
+      C_H_1: 0.25       # 25 uF/cm^2 = 0.25 F/m^2 — the trap
+      C_H_2: 0.25
+      c_b: 100.0
+      L: 10.0e-9
+      sweep_var: none
+      tier: diagnostic
+
+  p07_asym_facets:
+    template_id: gc_polyc_pb2d
+    fills:
+      E_M: 0.10
+      E_pzc_1: 0.35
+      E_pzc_2: -0.05
+      C_H_1: 0.8
+      C_H_2: 0.4
+      x: 0.25
+      c_b: 2.0
+      L: 30.0e-9
+      sweep_var: none
+      tier: diagnostic
+
+  p08_abstain_stern:
+    template_id: no_match
+
+  p09_custom_sweep:
+    template_id: gc_polyc_pb2d
+    fills:
+      E_M: 0.0
+      E_pzc_1: 0.30
+      E_pzc_2: -0.30
+      c_b: 1.0
+      L: 5.0e-9
+      sweep_var: E_M
+      sweep_lo: -0.30
+      sweep_hi: 0.30
+      n_points: 31
+      panel_L_nm: [5.0, 50.0]
+      tier: diagnostic
+
+  p10_match_ref:
+    template_id: gc_polyc_pb2d
+    fills:
+      E_M: -0.20
+      E_pzc_1: 0.10
+      E_pzc_2: 0.10
+      c_b: 0.1
+      L: 10.0e-9
+      sweep_var: none
+      tier: diagnostic
+
+  # --- polyc_mpb2d (full-physics modified-PB) held-out fills ---
+  # template_id MUST be set explicitly on every entry: the harness defaults a
+  # record with no template_id to gc_polyc_pb2d (run_one_deterministic, ~line 60),
+  # which would misroute these. Units: c_b mol/m^3 (1 mM = 1.0), L m (keep digits,
+  # never normalize the mantissa), C_H F/m^2 (50 uF/cm^2 = 0.5, 25 = 0.25), E in V,
+  # theta_max fraction (1% = 0.01), E_ads0 V. Values reproduce the reference
+  # figures (F1/V0/F4/F5) so the deterministic floor matches polyc_reference.json.
+
+  p11_steric_twofacet:
+    template_id: polyc_mpb2d
+    # F1 (steric/Bikerman, two facets, symmetric split PZC dE=0.6 V): sweep E_M with
+    # the L = {1,10,100} nm panel — the article's headline 1->2 minima transition.
+    fills:
+      E_M: 0.0
+      E_pzc_1: 0.30
+      E_pzc_2: -0.30
+      c_b: 0.1            # 0.1 mM = 0.1 mol/m^3 (dilute)
+      L: 10.0e-9          # base period 10 nm; the L panel runs 1/10/100 nm
+      x: 0.5
+      sweep_var: E_M
+      sweep_lo: -0.5
+      sweep_hi: 0.5
+      n_points: 41
+      panel_L_nm: [1.0, 10.0, 100.0]
+      tier: diagnostic
+
+  p12_booth_single:
+    template_id: polyc_mpb2d
+    # Single-facet (E_pzc_1==E_pzc_2) field-dependent-eps / Langevin (Booth) case at
+    # C_H = 25 uF/cm^2 = 0.25 F/m^2 (Fig S3 / V0 value). Single-facet -> the
+    # cg_cross_check + magnitude gates run against the analytic GCS limit.
+    fills:
+      E_M: -0.15
+      E_pzc_1: 0.0
+      E_pzc_2: 0.0
+      C_H_1: 0.25         # 25 uF/cm^2 = 0.25 F/m^2 (Fig S3 / V0)
+      C_H_2: 0.25
+      c_b: 0.1            # 0.1 mM
+      L: 10.0e-9
+      sweep_var: none
+      tier: diagnostic
+
+  p13_adsorption_f5:
+    template_id: polyc_mpb2d
+    # F5 specific (Langmuir) adsorption ON: theta_max=1%, E_ads0=0.30 V (the
+    # F5.json fig8_sweep peak), x=0.2, dE_pzc=0.2 V, L=10 nm, c_b=0.1 mM.
+    # Reproduces F5_ads_L10nm (E_min shift ~-88.8 meV). Reproduced-with-caveat.
+    fills:
+      E_M: 0.0
+      E_pzc_1: -0.10
+      E_pzc_2: 0.10
+      c_b: 0.1            # 0.1 mM
+      L: 10.0e-9
+      x: 0.2
+      E_ads0: 0.30        # V (F5 fig8 peak; makes the overlap shift maximal)
+      theta_max: 0.01     # 1% coverage scale = adsorption ON
+      sweep_var: none
+      tier: diagnostic
+
+  p14_facet_ratio:
+    template_id: polyc_mpb2d
+    # Facet-ratio / asymmetric two-facet (F2 axis): facet 1 occupies x=0.25 of the
+    # period AND has a different Helmholtz capacitance (0.8 vs 0.4 F/m^2), split PZC
+    # +0.35/-0.05 V. c_b=2 mM, L=30 nm -> L > lambda_D so two C_dl minima.
+    fills:
+      E_M: 0.10
+      E_pzc_1: 0.35
+      E_pzc_2: -0.05
+      C_H_1: 0.8          # F/m^2 (asymmetric Helmholtz)
+      C_H_2: 0.4
+      x: 0.25             # facet 1 = quarter of the period
+      c_b: 2.0            # 2 mM
+      L: 30.0e-9
+      sweep_var: none
+      tier: diagnostic
+
+  p15_unit_trap:
+    template_id: polyc_mpb2d
+    # Unit trap: the prompt states "10 mM"; in this template c_b is mol/m^3, so
+    # 10 mM -> 10.0 (NOT 0.01). Single-facet so cg_cross_check + magnitude run.
+    # Reproduces V0_cb10_conc (concentrated single-facet, lambda_D ~ 3 nm).
+    fills:
+      E_M: 0.20
+      E_pzc_1: 0.0
+      E_pzc_2: 0.0
+      C_H_1: 0.5
+      C_H_2: 0.5
+      c_b: 10.0           # 10 mM = 10.0 mol/m^3 — the trap (NOT 0.01)
+      L: 10.0e-9
+      sweep_var: none
+      tier: diagnostic
+
+  p16_abstain_polyfacet:
+    template_id: no_match
+    # Out-of-scope by a STRUCTURAL exclusion (CONSTRAINTS.md §4): >2 facets / random
+    # facet distribution / grain boundaries. polyc_mpb2d is hardwired to a TWO-facet
+    # periodic stripe; a many-orientation polycrystal with grain boundaries is outside
+    # both templates -> route no_match. NO fills (exactly like p08_abstain_stern).
+    # (Distinct from p08's kinetics/current reason; uses in-scope vocabulary as a decoy.)
+
+  p17_pz_slope:
+    template_id: polyc_mpb2d
+    # F4 Parsons-Zobel: two-facet dE_pzc=0.2 V, L=10 nm, E_M sweep; the model's
+    # internal c_b series builds the PZ line (pz_slope ~0.958, R^2>0.99).
+    # Reproduces F4_PZ_L10nm. One C_dl minimum (L < lambda_D).
+    fills:
+      E_M: 0.0
+      E_pzc_1: -0.10
+      E_pzc_2: 0.10
+      c_b: 0.1            # 0.1 mM (dilute, single applied point per L)
+      L: 10.0e-9
+      x: 0.5
+      sweep_var: E_M
+      sweep_lo: -0.5
+      sweep_hi: 0.5
+      n_points: 41
+      panel_L_nm: [10.0]
+      tier: diagnostic
+
+  p18_v0_dilute:
+    template_id: polyc_mpb2d
+    # V0 dilute single-facet (camel/bell baseline): E_pzc_1==E_pzc_2, C_H=0.5,
+    # c_b=0.1 mM, off-PZC point. Reproduces V0_cb01_dilute (sigma ~-7.95e-3 C/m^2).
+    # Single-facet -> cg_cross_check + magnitude run against the analytic GCS limit.
+    fills:
+      E_M: -0.15
+      E_pzc_1: 0.0
+      E_pzc_2: 0.0
+      C_H_1: 0.5
+      C_H_2: 0.5
+      c_b: 0.1            # 0.1 mM
+      L: 10.0e-9
+      sweep_var: none
+      tier: diagnostic

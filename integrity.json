@@ -1,0 +1,15 @@
+{
+  "description": "SHA256 integrity manifest for eforge's nine frozen template and reference files (keys are main/-relative). Recomputed by installer/verify.py. The authoritative correctness certificate is the deterministic score of 1.0 on the 18-problem battery; this manifest pins the frozen inputs.",
+  "algorithm": "sha256",
+  "files": {
+    "templates/gc_polyc/physics.frozen.md": "18512afc8a0a3a8b7c69ed323063781da8ada1ed8e27feb2a237f4dd9e82a1f8",
+    "templates/gc_polyc/gates.frozen.yaml": "95ad2150706db1566c9ba52e136ed4d493f117035a1580c12dc07bf720f3e6ad",
+    "eval/reference/ground_truth_fills.yaml": "5d860dc304e963f2e1f7beb64f6c1a0d0dec747e6c504c3dc6b9b881d461af96",
+    "eval/reference/gc_reference.json": "a3fa38d62eb2b65954ccfd50f344b84fbfcda097e841619d6c193a4fa44d2582",
+    "templates/gc_polyc/python_skeleton.py.j2": "4dcf1c68421e2763ffda6d314a0a55430be8dde9cfc1c244d4c175e7b2c8fd8d",
+    "templates/polyc_mpb2d/physics.frozen.md": "3cc630b636f31f3600ce002d6e6af1594a710abd1a09c7e5367060b10b94e6a4",
+    "templates/polyc_mpb2d/gates.frozen.yaml": "2a292875607208c94c3f9e1b740b4b3513022e7dd40bec4d895c123c1ad4cc9d",
+    "templates/polyc_mpb2d/python_skeleton.py.j2": "41980bd5214ce81970c0109402582c88eb27f48d550f088d3d802a403d890bf5",
+    "eval/reference/polyc_reference.json": "4681aaae68d106c0be1c55f2acbe30176cd401096669a7574fafe2b627b10e56"
+  }
+}

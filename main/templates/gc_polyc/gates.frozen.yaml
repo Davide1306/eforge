@@ -1,0 +1,37 @@
+# gates.frozen.yaml — gc_polyc_pb2d acceptance gates (FROZEN — integrity-pinned; do not edit)
+# Tolerances mirror the reference implementation's acceptance tests
+# (single-facet PB, Debye-Hückel limit, PB-1D vs Chapman-Grahame, F2).
+
+fast:   # run every pipeline evaluation, diagnostic mesh {Ny:8, Nz:64}
+  - id: residual_converged
+    check: "exec RESULT_JSON.success == true AND RESULT_JSON.residual_norm < 1e-6"
+  - id: sigma_vs_cg_single_facet
+    when: "E_pzc_1 == E_pzc_2 and C_H_1 == C_H_2"
+    check: "rel_err(sigma_bar, sigma_GC(solve_psi0(E_M, E_pzc_1, C_H_1, c_b), c_b)) < tol[tier]"
+    # tier-aware tolerance: discretization error of the REFERENCE solver itself
+    # (dilute deep-drive calibration):
+    # diagnostic {8,64} -> 3.7e-3; milestone {64,128} -> 9.9e-4; final {128,256} -> 2.6e-4.
+    # Port fidelity vs the reference solver is a SEPARATE gate at 1e-3 (passes at ~1e-15).
+    tol: {diagnostic: 5.0e-3, milestone: 1.5e-3, final: 1.0e-3}
+  - id: sigma_sign
+    check: "sign(sigma_bar) == sign(sum_i x_i*C_H_i*(E_M - E_pzc_i))"
+    # C_H-weighted proxy (NOT bare area-average: wrong for asymmetric C_H,
+    # caught on p07). Exempt when facet contributions nearly cancel
+    # (|weighted| < 0.2*gross) — differential nonlinear screening may then
+    # legitimately set the sign — or when |sigma| < 1e-5 C/m^2.
+  - id: cdl_positive
+    when: "sweep_var == E_M"
+    check: "min(C_dl over sweep) > 0"
+  - id: dh_limit_analytic
+    check: "rel_err(C_GC(1e-4, c_b), C_DH(c_b)) < 1e-4   # oracle self-consistency, no mesh"
+
+full:   # end-of-run / live box only, final mesh {Ny:128, Nz:256}
+  - id: pb_2d_recovers_1d
+    check: "single-facet 2-D: lateral variance < 1e-6 V AND rel_err(sigma_bar, sigma_GC) < 1e-3"
+  - id: f2_topology
+    check: "n_minima of C_dl(E_M) matches regime (1 for L<<lambda_D or small dE_pzc; 2 for L>>lambda_D and large dE_pzc); minima positions within ±0.05 V of facet single-minimum predictions"
+
+veto:   # hard invariants (integrity gate)
+  - "any integrity-pinned file changed (physics.frozen.md, gates.frozen.yaml, ground_truth_fills.yaml)"
+  - "hallucination_incidents > 0 on the deterministic battery"
+  - "executability_rate below 1.0 on the deterministic battery"

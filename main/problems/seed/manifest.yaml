@@ -1,0 +1,20 @@
+problems:
+  - {id: p01_f2a_dilute,      expected_template: gc_polyc_pb2d, tags: [sweep, dilute, two_facet]}
+  - {id: p02_bistable_conc,   expected_template: gc_polyc_pb2d, tags: [sweep, bistable]}
+  - {id: p03_single_crystal,  expected_template: gc_polyc_pb2d, tags: [single_facet, point]}
+  - {id: p04_molar_trap,      expected_template: gc_polyc_pb2d, tags: [unit_trap_M, point]}
+  - {id: p05_minimal_defaults, expected_template: gc_polyc_pb2d, tags: [defaults, point]}
+  - {id: p06_unit_trap_CH,    expected_template: gc_polyc_pb2d, tags: [unit_trap_CH, point]}
+  - {id: p07_asym_facets,     expected_template: gc_polyc_pb2d, tags: [asymmetric, point]}
+  - {id: p08_abstain_stern,   expected_template: no_match,      tags: [abstain]}
+  - {id: p09_custom_sweep,    expected_template: gc_polyc_pb2d, tags: [sweep, custom]}
+  - {id: p10_match_ref,       expected_template: gc_polyc_pb2d, tags: [single_facet, ref_anchor]}
+  # --- polyc_mpb2d (full-physics modified-PB) seed problems ---
+  - {id: p11_steric_twofacet, expected_template: polyc_mpb2d,   tags: [steric, two_facet, sweep]}
+  - {id: p12_booth_single,    expected_template: polyc_mpb2d,   tags: [langevin, field_eps, single_facet]}
+  - {id: p13_adsorption_f5,   expected_template: polyc_mpb2d,   tags: [adsorption, langmuir]}
+  - {id: p14_facet_ratio,     expected_template: polyc_mpb2d,   tags: [asymmetric, facet_ratio, two_facet]}
+  - {id: p15_unit_trap,       expected_template: polyc_mpb2d,   tags: [unit_trap, point, single_facet]}
+  - {id: p16_abstain_polyfacet, expected_template: no_match,    tags: [abstain, out_of_scope, polyfacet]}
+  - {id: p17_pz_slope,        expected_template: polyc_mpb2d,   tags: [parsons_zobel, sweep, two_facet]}
+  - {id: p18_v0_dilute,       expected_template: polyc_mpb2d,   tags: [single_facet, dilute, ref_anchor]}

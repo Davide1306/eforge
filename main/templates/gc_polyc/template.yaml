@@ -1,0 +1,156 @@
+# Template: gc_polyc_pb2d — 2-D Poisson-Boltzmann (Gouy-Chapman) EDL, periodic two-facet stripe
+# Derived from the reference Gouy-Chapman implementation (Liu et al., ACS Electrochem. 2026).
+# fillable: false sections are FROZEN — any LLM write into them is a hallucination_incident.
+
+template_id: gc_polyc_pb2d
+version: 1
+title: "2-D Poisson-Boltzmann (Gouy-Chapman) EDL on a periodic two-facet stripe electrode"
+description: >
+  Use when the problem asks for the electric double-layer potential profile,
+  surface charge density, or differential capacitance of a polycrystalline /
+  two-facet metal electrode in a symmetric z:z aqueous electrolyte, treated at
+  the classical Gouy-Chapman mean-field level (no specific adsorption, no
+  steric/Bikerman crowding, no field-dependent Booth permittivity). Facets
+  differ in potential of zero charge and optionally Helmholtz capacitance.
+
+physics:
+  fillable: false
+  ref: physics.frozen.md
+  governing_eq: "d2phi/deta2 + d2phi/dzeta2 = sinh(phi)   [dimensionless]"
+  dimensionless_vars:
+    - "phi = F*varphi/(R*T)"
+    - "zeta = z/lambda_D"
+    - "eta  = y/lambda_D"
+  bc:
+    z0: "Robin: dphi/dzeta|_0 = nu_i*(phi_0 - Phi_i); nu_i = C_H_i*lambda_D/(eps0*eps_r); Phi_i = F*(E_M - E_pzc_i)/(R*T)"
+    zmax: "Dirichlet: phi = 0"
+    y: "periodic"
+
+constants:
+  fillable: false
+  EPS0: 8.8541878128e-12     # F/m
+  F: 96485.33212             # C/mol
+  R: 8.31446261815324        # J/(mol K)
+  T: 298.15                  # K
+  EPS_R_WATER: 78.5          # relative permittivity (article SI Table S1)
+  C_H_DEFAULT: 0.5           # F/m^2  (= 50 uF/cm^2)
+
+parameters:
+  fillable: true
+  group: parameters_core
+  slots:
+    E_M:
+      type: float
+      unit: V
+      range: [-1.0, 1.0]
+      required: true
+      desc: "Applied electrode potential vs SHE."
+    E_pzc_1:
+      type: float
+      unit: V
+      range: [-1.0, 1.0]
+      required: true
+      desc: "Potential of zero charge, facet 1, vs SHE."
+    E_pzc_2:
+      type: float
+      unit: V
+      range: [-1.0, 1.0]
+      required: true
+      desc: "Potential of zero charge, facet 2, vs SHE."
+    c_b:
+      type: float
+      unit: "mol/m^3"
+      range: [1.0e-3, 1.0e+4]
+      required: true
+      desc: "Bulk electrolyte concentration. CRITICAL UNIT NOTE: 1 mM = 1.0 mol/m^3 (numerically equal). 10 mM -> 10.0."
+    L:
+      type: float
+      unit: m
+      range: [1.0e-10, 1.0e-6]
+      required: true
+      desc: "Stripe period (one facet-1 + facet-2 repeat), in meters. Convert nm by appending e-9 while KEEPING the problem's digits as written: 10 nm -> 10e-9, 5 nm -> 5e-9, 2.5 nm -> 2.5e-9. Never normalize the mantissa (do not rewrite 10e-9 as 1e-08)."
+
+parameters_optional:
+  fillable: true
+  group: parameters_optional
+  slots:
+    C_H_1:
+      type: float
+      unit: "F/m^2"
+      default: 0.5
+      range: [0.01, 5.0]
+      required: false
+      desc: "Helmholtz capacitance facet 1. 50 uF/cm^2 = 0.5 F/m^2. Use default unless the problem states otherwise."
+    C_H_2:
+      type: float
+      unit: "F/m^2"
+      default: 0.5
+      range: [0.01, 5.0]
+      required: false
+      desc: "Helmholtz capacitance facet 2."
+    x:
+      type: float
+      unit: "1"
+      default: 0.5
+      range: [0.0, 1.0]
+      required: false
+      desc: "Fraction of the stripe period occupied by facet 1."
+
+sweep:
+  fillable: true
+  group: sweep
+  slots:
+    sweep_var:
+      type: enum
+      choices: [E_M, none]
+      default: E_M
+      desc: "Set 'none' when the problem evaluates at a single applied potential ('at X V', 'single point') — then sweep_lo, sweep_hi and n_points must all be null. Set 'E_M' ONLY when an explicit potential range/sweep/curve is requested."
+    sweep_lo:
+      type: float
+      unit: V
+      default: -0.5
+      desc: "Sweep lower bound in V. Only when sweep_var='E_M'; null otherwise."
+    sweep_hi:
+      type: float
+      unit: V
+      default: 0.5
+      desc: "Sweep upper bound in V. Only when sweep_var='E_M'; null otherwise."
+    n_points:
+      type: int
+      default: 41
+      range: [5, 201]
+      desc: "Number of sweep points, only when sweep_var='E_M'. For a single-point solve (sweep_var='none') this must be null — never 1."
+    panel_L_nm:
+      type: "list[float]"
+      default: [10.0]
+      desc: "Stripe periods in NANOMETERS to run as separate curves (e.g. [1, 10, 100]). Always include this field."
+
+mesh_tier:
+  fillable: true
+  group: mesh_tier
+  slots:
+    tier:
+      type: enum
+      choices: [diagnostic, milestone, final]
+      default: diagnostic
+      desc: "Mesh resolution tier. diagnostic for quick checks, final for article-grade figures."
+  resolved_table:
+    fillable: false
+    diagnostic: {Ny: 8,   Nz: 64,  Z_max_factor: 8.0}
+    milestone:  {Ny: 64,  Nz: 128, Z_max_factor: 8.0}
+    final:      {Ny: 128, Nz: 256, Z_max_factor: 8.0}
+
+outputs:
+  fillable: false
+  artifacts:
+    - name: result_json
+      desc: "stdout line 'RESULT_JSON: {...}' with success, residual_norm, sigma_bar_C_per_m2, psi_surf_min_V, psi_surf_max_V"
+    - name: sweep_csv
+      pattern: "sweep_L{L_nm}nm.csv"
+      columns: [E_M_V, sigma_bar_Cm2, C_dl_Fm2]   # column ORDER is the contract
+  return_contract:
+    solve_fn: "solve_pb_2d(case_dict, mesh_dict) -> (phi_yz, sigma_M, sigma_bar, result)"
+
+acceptance_gates:
+  fillable: false
+  ref: gates.frozen.yaml

@@ -1,0 +1,62 @@
+# Template registry — the ONLY thing the selector node reads.
+# Keep descriptions discriminative: the selector matches problems against these.
+
+templates:
+  - id: gc_polyc_pb2d
+    path: gc_polyc/template.yaml
+    description: >
+      Electric double layer of a POLYCRYSTALLINE / two-facet metal electrode in
+      aqueous symmetric electrolyte at the CLASSICAL Gouy-Chapman mean-field
+      level ONLY: point ions (no finite ion size, no steric/Bikerman crowding or
+      lattice saturation), a CONSTANT solvent permittivity (no field-dependent /
+      Booth permittivity, no Stern dielectric saturation), and NO specific
+      adsorption. Computes potential profile phi(y,z), surface charge sigma, and
+      differential capacitance C_dl vs applied potential. Facets differ in PZC
+      (and optionally Helmholtz capacitance). 2-D periodic stripe geometry. NOT
+      for: specific adsorption, steric/Bikerman effects, field-dependent
+      permittivity (Booth), or electrochemical kinetics (CO2R/HER currents)
+      (for steric / Langevin / field-dependent-permittivity / specific-adsorption
+      physics use polyc_mpb2d). Single-crystal-only questions that need no facet
+      contrast are still in scope (set both PZCs equal).
+
+  - id: polyc_mpb2d
+    path: polyc_mpb2d/template.yaml
+    description: >
+      Electric double layer of a POLYCRYSTALLINE / two-facet metal electrode in
+      aqueous monovalent electrolyte solved with the FULL mean-field physics, a
+      2-D MODIFIED Poisson-Boltzmann model that goes BEYOND classical
+      Gouy-Chapman. Choose this whenever the problem asks for any of: finite
+      ion size / steric (Bikerman) ion crowding or lattice saturation at high
+      potential (asymmetric volume-exclusion factors for cation vs anion);
+      Langevin solvent (dipole) polarization with a field-dependent /
+      potential-dependent (Booth-type) permittivity or Stern-layer dielectric
+      saturation; position-dependent water density; specific / Langmuir
+      adsorption (coverage isotherm theta(E), adsorption capacitance C_ads,
+      total C = C_dl + C_ads); or facet-resolved Helmholtz (Robin) boundary
+      conditions on a 2-D y-periodic two-facet stripe (facets differ in PZC and
+      optionally Helmholtz capacitance). Computes phi(y,z), the Helmholtz-plane
+      profile, free charge q_free(E_M), differential capacitance C_dl(E)/total
+      capacitance, capacitance minima, potential of zero charge, and
+      Parsons-Zobel slopes. This is the right template for any double-layer
+      problem whose accuracy needs ion crowding, a field-dependent permittivity,
+      OR specific adsorption — the physics gc_polyc_pb2d explicitly excludes.
+      NOT for: more than 2 facets / random facet distributions, grain boundaries
+      / facet misalignment, multiple co-adsorbing species, explicit adsorbate
+      electronics / DFT coupling, electrochemical (faradaic) kinetics or
+      currents (CO2R / HER polarization curves), non-aqueous solvents, or
+      time-dependent / transient response (steady state only).
+
+  - id: no_match
+    path: null
+    description: >
+      Choose this ONLY when the problem requires physics OUTSIDE BOTH templates
+      above — e.g. electrochemical (faradaic) reaction kinetics or currents
+      (CO2R / HER polarization curves, electron-transfer / Marcus-Hush-Chidsey
+      rates), more than 2 facets / random facet distributions, grain boundaries
+      / facet misalignment, multiple co-adsorbing species, explicit adsorbate
+      electronics / DFT coupling, non-aqueous solvents, or time-dependent /
+      transient response. NOTE: steric / Bikerman ion crowding, field-dependent
+      (Booth) permittivity / Stern-layer dielectric saturation, and specific /
+      Langmuir adsorption isotherms are NOT out of scope — they are covered by
+      polyc_mpb2d, so do NOT abstain on those. The pipeline must abstain rather
+      than force a wrong template.

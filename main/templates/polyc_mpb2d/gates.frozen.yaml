@@ -1,0 +1,52 @@
+# gates.frozen.yaml — polyc_mpb2d acceptance gates (FROZEN — integrity-pinned; do not edit)
+# Source of bands: the reference implementation's constraints (article-grade, full
+# physics => tight) + eqs 10-11 cross-check + the F5 adsorption deliverable.
+# Gate ids are stable contracts implemented by the gate module; the cg_cross_check
+# oracle (eqs 10-11) is polyc_oracle.py.
+
+fast:   # run every pipeline evaluation; diagnostic mesh {Ny:24, Nz:48}, cheap/diagnostic-friendly
+  - id: residual_converged
+    check: "exec RESULT_JSON.success == true AND RESULT_JSON.residual_norm < 1e-6"
+  - id: cg_cross_check
+    # convergence oracle vs the analytic single-facet CG / GCS forms (eqs 10-11);
+    # polyc_oracle.py. Dilute single-facet limit of the full model.
+    when: "E_pzc_1 == E_pzc_2 and C_H_1 == C_H_2"
+    check: "rel_err(C_dl_2facet(...), C_dl_GCS(C_H, C_GC(E_M, E_pzc_1, lambda_D(c_b)))) < 1e-3"
+  - id: minima_count_exact
+    # B-count EXACT. Convention (erratum E7): single minimum for L < lambda_D;
+    # two minima for L > lambda_D (at large enough dE_pzc). Shallow extra minima
+    # near the L ~ lambda_D transition count as "one minimum" (Fig S1 convention).
+    when: "sweep_var == E_M"
+    check: "n_minima(C_dl over E_M sweep) matches regime (1 for L<lambda_D or small dE_pzc; 2 for L>lambda_D and large dE_pzc)"
+  - id: cdl_positive
+    when: "sweep_var == E_M"
+    check: "min(C_dl over sweep) > 0   # positivity / sign sanity, diagnostic-mesh"
+
+full:   # end-of-run / final mesh {Ny:96, Nz:192}, vs digitized reference curves
+  - id: feature_position
+    # B-pos: capacitance-minimum / feature positions within 20 mV of reference.
+    check: "abs(dE) <= 20e-3 V for every capacitance-minimum / feature position vs digitized reference"
+  - id: magnitude
+    # B-mag: capacitance magnitudes, pointwise on digitized curves (digitization floor ~2-5%).
+    check: "rel_err(C_dl, C_dl_reference) <= 0.10 pointwise on the digitized curve"
+  - id: pz_slope
+    # B-slope: Parsons-Zobel slopes. |Delta slope| <= 0.05 absolute, R^2 > 0.99, intercept rel <= 10%.
+    check: "abs(pz_slope - pz_slope_ref) <= 0.05 AND pz_r2 > 0.99 AND rel_err(pz_intercept, 1/C_H) <= 0.10"
+  - id: b_dev
+    # B-dev (F3 coverage): E_dl,min - E_pzc deviation curves (meV scale).
+    tier: full
+    check: "abs(dDev) <= 10e-3 V (10 meV) for the E_dl,min - E_pzc deviation curve"
+  - id: adsorption_shift
+    # F5 deliverable. CAVEAT — reproduced-with-documented-limitation, NOT article-grade:
+    # the polyc model under-predicts the PZ theta-magnitude out-of-band by ~0.05-0.10
+    # (model under paper). This gate certifies REPRODUCTION (correct sign/direction of the
+    # adsorption-induced E_min shift and the qualitative two-minima emergence when the
+    # C_ads peak overlaps C_dl,min), with the magnitude gap documented — it does NOT
+    # certify article-grade slope agreement. theta_max=1% shifts E_min by >70 mV.
+    tier: full
+    check: "adsorption_shift sign/direction reproduced AND |residual PZ-slope offset| within the documented ~0.05-0.10 out-of-band tolerance (NOT B-slope-tight)"
+
+veto:   # hard invariants (integrity gate)
+  - "any integrity-pinned file changed (physics.frozen.md, gates.frozen.yaml, ground_truth_fills.yaml)"
+  - "hallucination_incidents > 0 on the deterministic battery"
+  - "executability_rate below 1.0 on the deterministic battery"

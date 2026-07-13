@@ -1,0 +1,12 @@
+langgraph
+langchain-openai
+openai
+httpx
+jinja2
+pydantic>=2
+pyyaml
+jsonschema
+mph
+numpy
+scipy
+pytest
